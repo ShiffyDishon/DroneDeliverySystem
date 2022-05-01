@@ -1,0 +1,86 @@
+﻿<Window x:Class="PL.StationListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="DroneListWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="UpGridStation" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="AvailbleChargingSlotsLabel" FontFamily="Tahoma" FontSize="16" FontWeight="SemiBold" HorizontalAlignment= "Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Top" Grid.Column="2" Grid.Row="0" Padding="2" >Availble Charging Slots</Label>
+            <TextBox Name="amountChargingSlots" FontFamily="Tahoma" FontSize="16" FontWeight="SemiBold" HorizontalAlignment= "Stretch" VerticalAlignment="Bottom" Grid.Column="2" Margin="15,10" TextChanged="AvailbleChargingSlots"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" />
+            <Button x:Name="AddStationBtn" FontFamily="Tahoma" FontSize="16" FontWeight="SemiBold" Content="Add station" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Margin="15,10" Click="AddStationBtnClick"/>
+            <Button x:Name="CloseButton"    FontFamily="Tahoma" FontSize="16" FontWeight="SemiBold" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4" Margin="15,10" Click="CloseButtonClick"/>
+        </Grid>
+        <Image Source="/pic/shipping.jpg" Grid.ColumnSpan="2" Grid.Column="2" Margin="207,3,0,-17" Grid.RowSpan="4" Grid.Row="4" />
+
+        <Button Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Content="Sort by available slots" VerticalAlignment="Bottom" Click="sortStationByAvailableSlotsClick"></Button>
+        <ListView x:Name="StationListView" ItemsSource="{Binding}" Foreground="Black" FontSize="15"  FontFamily="Tahoma" FontWeight="Light" HorizontalAlignment="Left"
+            Grid.Row="2" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="2"  Background="White" MouseDoubleClick="StationSelection" >
+            <ListView.View >
+                <GridView>
+                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Name"  Width="100" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Availble Charging Slots" Width="200" DisplayMemberBinding="{Binding DroneChargeAvailble}" />
+                    <GridViewColumn Header="Occupied Charging Slots" Width="200" DisplayMemberBinding="{Binding DroneChargeOccupied}" />
+                </GridView>
+            </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"  FontSize="14" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text=" available charging slots. " FontSize="14" Foreground="#FF4B4A4A" FontStyle="Italic" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="{Binding ItemCount}" FontSize="14" Foreground="#FF4B4A4A" FontWeight="Bold"  Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text=" item(s). " FontSize="12" Foreground="#FF4B4A4A" FontStyle="Italic" VerticalAlignment="Bottom" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+    </Grid>
+</Window>

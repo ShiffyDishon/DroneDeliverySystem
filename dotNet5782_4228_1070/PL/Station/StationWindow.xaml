@@ -1,0 +1,99 @@
+﻿<Window x:Class="PL.StationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="DroneWindow" Height="450" Width="400" >
+    <Window.Resources>
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Opacity="0.8" Name="someName">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock x:Name="visibleAddForm"></TextBlock>
+        <TextBlock x:Name="visibleUpdateForm"></TextBlock>
+
+        <Label  x:Name="labelAddStation" Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="6" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center"  FontStretch="Medium"  FontSize="40" FontWeight="SemiBold" >Add a Station:</Label>
+        <Button x:Name="ReturnToPageStationListWindow" FontSize="10" FontWeight="DemiBold" Grid.Column="0" Grid.ColumnSpan="2" Height="20" Width="60"  Content="Return Back"    HorizontalAlignment="Left"  VerticalAlignment="Center"  Click="ButtonClickReturnToPageStationListWindow" Margin="10,0,0,0"/>
+        <Button x:Name="RestartButton"  Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="2" Height="30" Width="150"  Content="Restart" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Click="ButtonClickRestart" />
+        <Button x:Name="AddButton"    Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="5" Height="30" Width="145"  Content="Add"    HorizontalAlignment="Right"  VerticalAlignment="Bottom"  Click="addStationBtnClick"  />
+        <Button x:Name="UpdateBtn"    Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="5" Height="30" Width="145"  Content="Update"    HorizontalAlignment="Right"  VerticalAlignment="Bottom"  Click="UpdateBtnClick"  />
+        <Button x:Name="RemoveBtn"  Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="2" Height="30" Width="150"  Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Click="RemoveBtnClick" />
+
+        <Grid x:Name ="AddDroneDisplay" Grid.ColumnSpan="6" Grid.RowSpan="4" Grid.Row="1" Background="LightGray" Margin="0,45,0,10" Grid.Column="1">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="110*" />
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="15*"/>
+
+            </Grid.RowDefinitions>
+            <Label x:Name="IdLabel"                   Grid.Column="1" Grid.Row="1" Style="{StaticResource styleLabelForms}"   >Station id:</Label>
+            <TextBox x:Name="IdTextBox"               Text="{Binding Id, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Style="{StaticResource styleTextBoxForms}" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown"/>
+            <Label x:Name="NameLabel"                 Grid.Column="1" Grid.Row="2" Style="{StaticResource styleLabelForms}">Station Name:</Label>
+            <TextBox x:Name="NameTextBox"             Text="{Binding Name,Mode=TwoWay}" Grid.Column="2" Grid.Row="2" Style="{StaticResource styleTextBoxForms}" Margin="0,0,18,0"/>
+            <Label x:Name="ChargingSlotsLabel"        Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="1" Grid.Row="3" Style="{StaticResource styleLabelForms}">Station charging slots:</Label>
+            <TextBox x:Name="ChargingSlotsTextBox"    Text="{Binding DroneChargeAvailble , Mode=TwoWay}" Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="2" Grid.Row="3" Style="{StaticResource styleTextBoxForms}" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown"/>
+            <Label x:Name="StationLatitudeLabel"      Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="1" Grid.Row="4" Style="{StaticResource styleLabelForms}">Station' Latitude:</Label>
+            <TextBox x:Name="StationLatitudeTextBox"  Text="{Binding StationPosition.Latitude, Mode=TwoWay}" Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="2" Grid.Row="4" Style="{StaticResource styleTextBoxForms}" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown"/>
+            <Label x:Name="StationLongitudeLabel"     Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="1" Grid.Row="5" Style="{StaticResource styleLabelForms}">Station Longitude:</Label>
+            <TextBox x:Name="StationLongitudeTextBox" Text="{Binding StationPosition.Longitude, Mode=TwoWay}" Visibility="{Binding ElementName=visibleAddForm, Path=Visibility}" Grid.Column="2" Grid.Row="5" Style="{StaticResource styleTextBoxForms}"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown"/>
+
+            <Label x:Name="PositionLabel"                  Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="1" Grid.Row="3" Style="{StaticResource styleLabelForms}">Station position :</Label>
+            <TextBox x:Name="PositionTextBox"              Text="{Binding StationPosition, Mode=TwoWay}" Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="2" Grid.Row="3" Style="{StaticResource styleTextBoxForms}" />
+            <Label x:Name="ChargingSlotsAvailbleLabel"     Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="1" Grid.Row="4" Style="{StaticResource styleLabelForms}" >Availble charging slots:</Label>
+            <TextBox x:Name="ChargingSlotsAvailbleTextBox" Text="{Binding DroneChargeAvailble, Mode=TwoWay}" Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="2" Grid.Row="4" Style="{StaticResource styleTextBoxForms}" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown"/>
+            <Label x:Name="ChargingDronesLabel"            Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="1" Grid.Row="5" Style="{StaticResource styleLabelForms}"  >Charging drones</Label>
+            <TextBox x:Name="NoDronesInCharge"             Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" Grid.Column="2" Grid.Row="5" Style="{StaticResource styleTextBoxForms}"  >-------</TextBox>
+
+            <ListView x:Name="ChargingDronesInStationListView" Visibility="{Binding ElementName=visibleUpdateForm, Path=Visibility}" ItemsSource="{Binding DronesCharging,Mode=TwoWay}" Foreground="Black" FontSize="15"  FontFamily="Tahoma" FontWeight="Light" HorizontalAlignment="Left"
+            Grid.Row="5" Grid.RowSpan="3" Grid.Column="2"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2"  Background="White" MouseDoubleClick="DroneChargeSelection" >
+                <ListView.View >
+                    <GridView>
+                        <GridViewColumn Header="Id:"  Width="50" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Battery:" Width="60" DisplayMemberBinding="{Binding Battery}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+
+    </Grid>
+</Window>

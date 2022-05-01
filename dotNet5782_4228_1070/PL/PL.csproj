@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="drone.jpg" />
+    <None Remove="pic\alot of Drones.jpg" />
+    <None Remove="pic\call-history.png" />
+    <None Remove="pic\drone.jpg" />
+    <None Remove="pic\Drone.png" />
+    <None Remove="pic\drone3.jpg" />
+    <None Remove="pic\drone5.jpg" />
+    <None Remove="pic\free shipping2.jpg" />
+    <None Remove="pic\iconX.png" />
+    <None Remove="pic\iconX1.png" />
+    <None Remove="pic\id-badge.png" />
+    <None Remove="pic\incognito.png" />
+    <None Remove="pic\map-marker-home %281%29.png" />
+    <None Remove="pic\map-marker-home.png" />
+    <None Remove="pic\parcels in the sky.jpg" />
+    <None Remove="pic\parcels in the worls.jpg" />
+    <None Remove="pic\passport.png" />
+    <None Remove="pic\password.png" />
+    <None Remove="pic\password.svg" />
+    <None Remove="pic\passwords.png" />
+    <None Remove="pic\passwordView.png" />
+    <None Remove="pic\SendAparcel.jpg" />
+    <None Remove="pic\sender and target 1.jpg" />
+    <None Remove="pic\service.jpg" />
+    <None Remove="pic\service1.jpg" />
+    <None Remove="pic\target1.jpg" />
+    <None Remove="pic\target2.jpg" />
+    <None Remove="pic\worldParcels.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="drone.jpg" />
+    <Resource Include="pic\alot of Drones.jpg" />
+    <Resource Include="pic\call-history.png" />
+    <Resource Include="pic\drone.jpg" />
+    <Resource Include="pic\Drone.png" />
+    <Resource Include="pic\drone3.jpg" />
+    <Resource Include="pic\drone5.jpg" />
+    <Resource Include="pic\free shipping2.jpg" />
+    <Resource Include="pic\iconX.png" />
+    <Resource Include="pic\iconX1.png" />
+    <Resource Include="pic\id-badge.png" />
+    <Resource Include="pic\incognito.png" />
+    <Resource Include="pic\map-marker-home (1).png" />
+    <Resource Include="pic\map-marker-home.png" />
+    <Resource Include="pic\parcels in the sky.jpg" />
+    <Resource Include="pic\parcels in the worls.jpg" />
+    <Resource Include="pic\passport.png" />
+    <Resource Include="pic\password.png" />
+    <Resource Include="pic\passwords.png" />
+    <Resource Include="pic\passwordView.png" />
+    <Resource Include="pic\SendAparcel.jpg" />
+    <Resource Include="pic\sender and target 1.jpg" />
+    <Resource Include="pic\service.jpg" />
+    <Resource Include="pic\service1.jpg" />
+    <Resource Include="pic\target1.jpg" />
+    <Resource Include="pic\target2.jpg" />
+    <Resource Include="pic\worldParcels.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Customer\CustomerWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="MainWindows\MainWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Station\StationWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Station\StationListWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+בונוסים:
+
+ממשק לקוח
+אפשרויות כניסה לפי סיסמא לקוח \ כניסה לממשק ניהול עם סיסמת מנהל
+ שני מימושים בפרויקטים נפרדים ל IDal: DalObject & DalXml
+מחיקת אובייקט – הופכת אובייקט ללא פעיל לצורך אפשרויות שחזור
+Singleton, DalFactory – ללא פרמטרים
+בסימולטור – תצוגה מתעדכנת כל הזמן בהתאם לנתונים – מרחק ובטרייה.
+אפשרות הפעלת סימולטור על כמה רחפנים במקביל.
+אין שיתוף מידע בין חלונות
+בתצוגה – סינון רשימות לפי כמה פרמטרים
+ארכיטקטורה משופרת ב PL:  Binding, PO objects, etc.
+פונקציות הרחבה: + reflection
+
+פונקציה גנרית בשביל Serialize an object to XElement and Deserialize it in memory:
+XElementExtensions: 
+XElement ToXElement<T>(this object obj)
+T FromXElement<T>(this XElement xElement)
+
+Clone in BL  for returning drone from data source in BL
+
+ ·       פיצול לממשקים שונים – IBl, ISimulation
+Binding...
