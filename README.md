@@ -8,9 +8,13 @@ The drones are selected for shipment according to an algorithm that takes into a
 3. Drones' battery usage. 
 4. The weight of the package.
 5. The urgency of the package.
+
 Handling drones (sending, loading, releasing from loading, etc.).
+
 Possibility of automatic simulation.
+
 Project structure: 3 Tier architecture.
+
 Using:
 - Object Oriented Design.
 - Design pattern.
