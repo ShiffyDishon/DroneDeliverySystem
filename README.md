@@ -9,7 +9,7 @@ The drones are selected for shipment according to an algorithm that takes into a
 4. The weight of the package.
 5. The urgency of the package.
 
-Handling drones (sending, loading, releasing from loading, etc.).
+Handling customers, charging stations, packages, drones (sending, loading, releasing from loading, etc.).
 
 Possibility of automatic simulation.
 
